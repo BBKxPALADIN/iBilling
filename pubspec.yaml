@@ -1,0 +1,42 @@
+name: fooderlich
+description: a social recipe app to keep track of new dishes, and share with friends.
+
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  json_serializable: ^4.1.4
+  json_annotation: ^4.0.1
+  flutter_svg: ^0.22.0
+  jiffy: ^4.1.0
+  flutter_bloc: ^7.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/icons/
+    - assets/fonts/
+    - assets/sample_data/
+
+fonts:
+  - family: Ubuntu
+    fonts:
+      - asset: assets/fonts/Ubuntu-Regular.ttf
+        weight: 400
+      - asset: assets/fonts/Ubuntu-Medium.ttf
+        weight: 500
+      - asset: assets/fonts/Ubuntu-Light.ttf
+        weight: 300
+      - asset: assets/fonts/Ubuntu-Bold.ttf
+        weight: 700
+

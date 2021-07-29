@@ -1,0 +1,44 @@
+{
+  "contracts": [
+    {
+      "full_name":"Yoldosheva Ziyoda",
+      "contract_status": "Paid",
+      "amount": 1200000,
+      "last_invoice": 156,
+      "invoice_amount": 6,
+      "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
+      "created_at": "31.01.2021",
+      "organization_itn": 5647520318
+    },
+    {
+      "full_name":"Yoldosheva Ziyoda",
+      "contract_status": "Paid",
+      "amount": 1200000,
+      "last_invoice": 156,
+      "invoice_amount": 6,
+      "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
+      "created_at": "31.01.2021",
+      "organization_itn": 5647520318
+    },
+    {
+      "full_name":"Yoldosheva Ziyoda",
+      "contract_status": "Paid",
+      "amount": 1200000,
+      "last_invoice": 156,
+      "invoice_amount": 6,
+      "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
+      "created_at": "31.01.2021",
+      "organization_itn": 5647520318
+    },
+    {
+      "full_name":"Yoldosheva Ziyoda",
+      "contract_status": "Paid",
+      "amount": 1200000,
+      "last_invoice": 156,
+      "invoice_amount": 6,
+      "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
+      "created_at": "31.01.2021",
+      "organization_itn": 5647520318
+    }
+  ]
+}
