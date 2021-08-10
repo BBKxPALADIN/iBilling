@@ -1,198 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'blocs/contract_cubit.dart';
+import 'package:fooderlich/blocs/history/history_bloc.dart';
+import 'package:fooderlich/blocs/invoices/invoices_bloc.dart';
+import 'ui/new_contract/new_contract.dart';
+import 'ui/new_contract/new_invoice.dart';
+import 'components/contract/filter.dart';
+import 'ui/contracts.dart';
+import 'blocs/localization/localization_bloc.dart';
+import 'components/demo_localization.dart';
+import 'ui/home.dart';
+import 'blocs/contracts/contracts_bloc.dart';
 import 'theme/themes.dart';
-import './ui/screens.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-void main() => runApp(MyProject());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
-class MyProject extends StatelessWidget {
+  runApp(
+    EasyLocalization(
+      child: const MyProject(),
+      supportedLocales: const [
+        Locale('en'),
+        Locale('uz'),
+        Locale('ru'),
+      ],
+      path: 'assets/languages',
+      fallbackLocale: const Locale('en'),
+    ),
+  );
+}
+
+class MyProject extends StatefulWidget {
   const MyProject({Key key}) : super(key: key);
+
+  static void setLocale(BuildContext context, Locale locale) {
+    final state = context.findAncestorStateOfType<_MyProjectState>();
+    state.setLocale(locale);
+    print('-----------main.dart----setLocale------------'
+        '${locale.toString()}------------------------------');
+  }
+
+  @override
+  _MyProjectState createState() => _MyProjectState();
+}
+
+class _MyProjectState extends State<MyProject> {
+  Locale _locale;
+
+  void setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+    print('-----------main.dart--------------'
+        '${_locale.toString()}-----set new locale-------------------------');
+  }
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => ContractCubit(),
-        )
+          create: (_) => ContractsBloc()..add(LoadContracts()),
+        ),
+        BlocProvider(
+          create: (_) => InvoicesBloc()..add(LoadInvoices()),
+        ),
+        BlocProvider(
+          create: (_) => HistoryBloc()..add(InitializeHistoryEvent()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Home(),
+        home: const Home(),
         theme: BillingThemes.dark(),
-      ),
-    );
-  }
-}
-
-
-class Home extends StatefulWidget {
-  const Home({Key key}) : super(key: key);
-
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
-
-  static List<String> labels = <String>[
-    'Contracts',
-    'History',
-    'New Contract',
-    'Saved',
-    'Profile',
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  static List<Widget> pages = <Widget>[
-    Contracts(),
-    History(),
-    NewContract(),
-    Saved(),
-    Profile(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xff141416),
-        title: Row(
-          children: [
-            const Image(image: AssetImage('assets/icons/ellipse.png')),
-            const SizedBox(width: 12),
-            Text(
-              labels[_selectedIndex],
-              style: const TextStyle(
-                fontFamily: 'Ubuntu',
-                fontSize: 18,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-              icon: SvgPicture.asset('assets/icons/filter.svg'),
-              color: Colors.white,
-              onPressed: () {}),
-          const Center(
-              child: Text(
-                '|',
-                style: TextStyle(fontSize: 18),
-              )),
-          IconButton(
-              icon: SvgPicture.asset('assets/icons/search.svg'),
-              color: Colors.white,
-              onPressed: () {}),
+        localizationsDelegates: [
+          DemoLocalization.delegate,
         ],
-      ),
-      body: pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xff141416),
-        type: BottomNavigationBarType.fixed,
-        showUnselectedLabels: true,
-        selectedItemColor: Colors.white,
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
-        items: [
-          BottomNavigationBarItem(
-            label: 'Contracts',
-            icon: _selectedIndex == 0
-                ? SvgPicture.asset('assets/icons/contracts-bold.svg')
-                : SvgPicture.asset('assets/icons/contracts.svg'),
-          ),
-          BottomNavigationBarItem(
-            label: 'History',
-            icon: _selectedIndex == 1
-                ? SvgPicture.asset('assets/icons/history-bold.svg')
-                : SvgPicture.asset('assets/icons/history.svg'),
-          ),
-          BottomNavigationBarItem(
-            label: 'New',
-            icon: _selectedIndex == 2
-                ? SvgPicture.asset('assets/icons/create-bold.svg')
-                : SvgPicture.asset('assets/icons/create.svg'),
-          ),
-          BottomNavigationBarItem(
-            label: 'Saved',
-            icon: _selectedIndex == 3
-                ? SvgPicture.asset('assets/icons/saved-bold.svg')
-                : SvgPicture.asset('assets/icons/saved.svg'),
-          ),
-          BottomNavigationBarItem(
-            label: 'Profile',
-            icon: _selectedIndex == 4
-                ? SvgPicture.asset('assets/icons/profile-bold.svg')
-                : SvgPicture.asset('assets/icons/profile.svg'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildNewContract(){
-    // ignore: sized_box_for_whitespace
-    return Container(
-      height: MediaQuery.of(context).size.height*0.25,
-      width: MediaQuery.of(context).size.width*0.3,
-      child: AlertDialog(
-        title: Text(
-          'Что вы хотите создать?',
-          style: BillingThemes.textTheme.headline5,
-        ),
-        contentPadding: const EdgeInsets.only(bottom: 28),
-        content: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // ignore: deprecated_member_use
-            FlatButton(
-              onPressed: () {
-                Navigator.push(context,MaterialPageRoute(builder:
-                    (context)=>NewContract()));
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset('assets/icons/new_contract.svg'),
-                  const SizedBox(width: 16),
-                  Text(
-                    'Contract',
-                    style: BillingThemes.textTheme.bodyText1,
-                  )
-                ],
-              ),
-            ),
-            // ignore: deprecated_member_use
-            FlatButton(
-              onPressed: () {
-                Navigator.push(context,MaterialPageRoute(builder:
-                    (context)=>NewContract()));
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset('assets/icons/new_invoice.svg'),
-                  const SizedBox(width: 16),
-                  Text(
-                    'Invoice',
-                    style: BillingThemes.textTheme.bodyText1,
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        routes: {
+          FilterPage.routeName: (context) => const FilterPage(),
+          Contracts.routeName: (context) => const Contracts(),
+          Home.routeName: (context) => const Home(),
+          NewContract.routeName: (context) => const NewContract(),
+          NewInvoice.routeName: (context) => const NewInvoice(),
+        },
       ),
     );
   }

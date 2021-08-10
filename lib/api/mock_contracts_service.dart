@@ -9,17 +9,31 @@ class MockContractsService {
     return contracts;
   }
 
-  Future<List<Contract>> _getContracts() async {
+  Future<List<Invoice>> getInvoiceResponse() async {
+    final invoices = await _getInvoices();
+    return invoices;
+  }
+
+  Future<List<Invoice>> _getInvoices()async{
+    final contractResponse=await getStringJson();
+    return contractResponse.invoices;
+  }
+
+  Future<List<Contract>> _getContracts()async{
+    final contractResponse=await getStringJson();
+    return contractResponse.contracts;
+  }
+
+  Future<ContractResponse> getStringJson() async {
 
     await Future.delayed(const Duration(seconds: 2));
     final contractString =
         await loadAsset('assets/sample_data/sample.json');
 
-
     final jsonData = json.decode(contractString);
 
     final contracts = ContractResponse.fromJson(jsonData);
-    return contracts.contracts;
+    return contracts;
   }
 
   Future<String> loadAsset(String path) async {

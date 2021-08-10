@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fooderlich/theme/color.dart';
+import '../demo_localization.dart';
+import '../../theme/color.dart';
 import 'language_options.dart';
 import '../../theme/themes.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ProfileCard extends StatefulWidget {
   const ProfileCard({Key key}) : super(key: key);
@@ -12,6 +14,8 @@ class ProfileCard extends StatefulWidget {
 }
 
 class _ProfileCardState extends State<ProfileCard> {
+  static String currentLanguage = 'O\'zbek (Lotin)';
+  static SvgPicture currentSvg = SvgPicture.asset('assets/icons/uz.svg');
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +71,8 @@ class _ProfileCardState extends State<ProfileCard> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'Date of birth:',
+                          DemoLocalization.of(context)
+                              .getTranslatedValue('date_of_birth'),
                           style: BillingThemes.textTheme.headline6,
                         ),
                         const SizedBox(width: 8),
@@ -82,7 +87,8 @@ class _ProfileCardState extends State<ProfileCard> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'Phone number:',
+                          DemoLocalization.of(context)
+                              .getTranslatedValue('phone_number'),
                           style: BillingThemes.textTheme.headline6,
                         ),
                         const SizedBox(width: 8),
@@ -97,7 +103,8 @@ class _ProfileCardState extends State<ProfileCard> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'E-mail:',
+                          DemoLocalization.of(context)
+                              .getTranslatedValue('email'),
                           style: BillingThemes.textTheme.headline6,
                         ),
                         const SizedBox(width: 8),
@@ -120,21 +127,24 @@ class _ProfileCardState extends State<ProfileCard> {
                 color: BillingColor.darkColor,
               ),
               padding: const EdgeInsets.only(left: 10),
-              child: FlatButton(
+              // ignore: deprecated_member_use
+              child: MaterialButton(
                 onPressed: () {
                   showDialog(
                       context: context,
-                      builder: (BuildContext context) =>
-                          const LanguageOption());
+                      builder: (BuildContext context) => LanguageOption(
+                            currentLanguage: currentLanguage,
+                            currentSvg: currentSvg,
+                          ));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'English (USA)',
+                      currentLanguage,
                       style: BillingThemes.textTheme.headline6,
                     ),
-                    SvgPicture.asset('assets/icons/en.svg'),
+                    currentSvg,
                   ],
                 ),
               ),

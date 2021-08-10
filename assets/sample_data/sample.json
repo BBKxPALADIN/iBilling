@@ -7,38 +7,66 @@
       "last_invoice": 156,
       "invoice_amount": 6,
       "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
-      "created_at": "31.01.2021",
+      "created_at": "2021-08-03",
+      "organization_itn": 5647520318
+    },
+    {
+      "full_name":"Seulki Lee",
+      "contract_status": "In process",
+      "amount": 1250000,
+      "last_invoice": 156,
+      "invoice_amount": 5,
+      "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
+      "created_at": "2021-08-02",
+      "organization_itn": 5647520318
+    },
+    {
+      "full_name":"Ashrapova Nigina",
+      "contract_status": "Rejected by Payme",
+      "amount": 1320000,
+      "last_invoice": 156,
+      "invoice_amount": 4,
+      "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
+      "created_at": "2021-08-04",
       "organization_itn": 5647520318
     },
     {
       "full_name":"Yoldosheva Ziyoda",
       "contract_status": "Paid",
-      "amount": 1200000,
+      "amount": 1000000,
       "last_invoice": 156,
       "invoice_amount": 6,
       "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
-      "created_at": "31.01.2021",
+      "created_at": "2021-08-03",
       "organization_itn": 5647520318
     },
     {
-      "full_name":"Yoldosheva Ziyoda",
-      "contract_status": "Paid",
-      "amount": 1200000,
+      "full_name":"Seulki Lee",
+      "contract_status": "In process",
+      "amount": 1250000,
       "last_invoice": 156,
-      "invoice_amount": 6,
+      "invoice_amount": 5,
       "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
-      "created_at": "31.01.2021",
+      "created_at": "2021-08-02",
       "organization_itn": 5647520318
     },
     {
-      "full_name":"Yoldosheva Ziyoda",
-      "contract_status": "Paid",
-      "amount": 1200000,
+      "full_name":"Ashrapova Nigina",
+      "contract_status": "Rejected by IQ",
+      "amount": 1320000,
       "last_invoice": 156,
-      "invoice_amount": 6,
+      "invoice_amount": 4,
       "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
-      "created_at": "31.01.2021",
+      "created_at": "2021-08-04",
       "organization_itn": 5647520318
+    }
+  ],
+  "invoices": [
+    {
+      "service_name": "Computer Graphics",
+      "amount_of_invoice": 1250000,
+      "invoice_status": "Rejected by IQ",
+      "created_at": "2021-08-04"
     }
   ]
 }

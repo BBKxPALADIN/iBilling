@@ -47,8 +47,8 @@ class BillingThemes {
   static ThemeData dark() {
     return ThemeData(
       brightness: Brightness.dark,
-      primaryColor: Color(0xff141416),
-      accentColor: Color(0xffA6A6A6),
+      primaryColor: const Color(0xff141416),
+      accentColor: const Color(0xffA6A6A6),
       textSelectionTheme:
           const TextSelectionThemeData(selectionColor: Colors.white),
     );

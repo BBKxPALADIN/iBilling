@@ -15,6 +15,7 @@ dependencies:
   flutter_svg: ^0.22.0
   jiffy: ^4.1.0
   flutter_bloc: ^7.0.1
+  easy_localization: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -27,6 +28,9 @@ flutter:
     - assets/icons/
     - assets/fonts/
     - assets/sample_data/
+    - assets/languages/en.json
+    - assets/languages/ru.json
+    - assets/languages/uz.json
 
 fonts:
   - family: Ubuntu

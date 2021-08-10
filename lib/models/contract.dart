@@ -5,13 +5,38 @@ part 'contract.g.dart';
 @JsonSerializable()
 class ContractResponse {
   List<Contract> contracts;
+  List<Invoice> invoices;
 
-  ContractResponse({this.contracts});
+  ContractResponse({this.contracts, this.invoices});
 
   factory ContractResponse.fromJson(Map<String, dynamic> json) =>
       _$ContractResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ContractResponseToJson(this);
+}
+
+@JsonSerializable()
+class Invoice {
+  @JsonKey(name: 'service_name')
+  String serviceName;
+  @JsonKey(name: 'amount_of_invoice')
+  int amountOfInvoice;
+  @JsonKey(name: 'invoice_status')
+  String invoiceStatus;
+  @JsonKey(name: 'created_at')
+  String createdAt;
+
+  Invoice({
+    this.serviceName,
+    this.amountOfInvoice,
+    this.invoiceStatus,
+    this.createdAt,
+  });
+
+  factory Invoice.fromJson(Map<String, dynamic> json) =>
+      _$InvoiceFromJson(json);
+
+  Map<String, dynamic> toJson() => _$InvoiceToJson(this);
 }
 
 @JsonSerializable()
@@ -44,5 +69,6 @@ class Contract {
 
   factory Contract.fromJson(Map<String, dynamic> json) =>
       _$ContractFromJson(json);
+
   Map<String, dynamic> toJson() => _$ContractToJson(this);
 }
