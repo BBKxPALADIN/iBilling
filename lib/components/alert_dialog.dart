@@ -4,6 +4,7 @@ import 'const_classes.dart';
 import '../theme/color.dart';
 import '../theme/themes.dart';
 import '../ui/screens.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 // ignore: must_be_immutable
 class TypeOfContract extends StatefulWidget {
@@ -22,7 +23,7 @@ class _TypeOfContractState extends State<TypeOfContract> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        'Что вы хотите создать?',
+        'what_dou_you_wanna_create'.tr(),
         style: BillingThemes.textTheme.headline5,
         textAlign: TextAlign.center,
       ),
@@ -37,7 +38,7 @@ class _TypeOfContractState extends State<TypeOfContract> {
             FlatButton(
               onPressed: () {
                 Pages.pages[2]=const NewContract();
-                Titles.labels[2]='New Contract';
+                Titles.labels[2]='new_contract'.tr();
                 Navigator.of(context).pop();
               },
               color: BillingColor.lightGreyColor,
@@ -48,7 +49,7 @@ class _TypeOfContractState extends State<TypeOfContract> {
                   SvgPicture.asset('assets/icons/new_contract.svg'),
                   const SizedBox(width: 16),
                   Text(
-                    'Contract',
+                    'new_contract'.tr(),
                     style: BillingThemes.textTheme.bodyText1,
                   )
                 ],
@@ -58,7 +59,7 @@ class _TypeOfContractState extends State<TypeOfContract> {
             FlatButton(
               onPressed: () {
                 Pages.pages[2]=const NewInvoice();
-                Titles.labels[2]='New Invoice';
+                Titles.labels[2]='new_invoice'.tr();
                 Navigator.of(context).pop();
               },
               color: BillingColor.lightGreyColor,
@@ -70,7 +71,7 @@ class _TypeOfContractState extends State<TypeOfContract> {
                   SvgPicture.asset('assets/icons/new_invoice.svg'),
                   const SizedBox(width: 16),
                   Text(
-                    'Invoice',
+                    'new_invoice'.tr(),
                     style: BillingThemes.textTheme.bodyText1,
                   )
                 ],

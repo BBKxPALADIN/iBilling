@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/components/widgets_for_new/save_button.dart';
+import '../../components/widgets_for_new/save_button.dart';
 import '../../components/components.dart';
 import '../../theme/color.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class NewContract extends StatefulWidget {
   static const routeName = '/newContract';
@@ -28,15 +29,15 @@ class _NewContractState extends State<NewContract> {
             children: [
               const DropDownEntity(),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              const CustomTextField(title: 'Full Name'),
+              CustomTextField(title: 'full_name'.tr()),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              const CustomTextField(title: 'Address of the organization'),
+              CustomTextField(title: 'address'.tr()),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              const CustomTextField(title: 'ITN/TIN'),
+              CustomTextField(title: 'ITN'.tr()),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               const DropDownStatus(),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              const SaveButton(title: 'Save contract'),
+               SaveButton(title: 'save'.tr()),
             ],
           ),
         ),

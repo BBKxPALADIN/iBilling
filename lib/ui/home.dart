@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../theme/color.dart';
 import '../components/components.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Home extends StatefulWidget {
   static const routeName = '/home';
@@ -51,31 +52,31 @@ class _HomeState extends State<Home> {
         currentIndex: _selectedIndex,
         items: [
           BottomNavigationBarItem(
-            label: 'Contracts',
+            label: 'contracts'.tr(),
             icon: _selectedIndex == 0
                 ? SvgPicture.asset('assets/icons/contracts-bold.svg')
                 : SvgPicture.asset('assets/icons/contracts.svg'),
           ),
           BottomNavigationBarItem(
-            label: 'History',
+            label: 'history'.tr(),
             icon: _selectedIndex == 1
                 ? SvgPicture.asset('assets/icons/history-bold.svg')
                 : SvgPicture.asset('assets/icons/history.svg'),
           ),
           BottomNavigationBarItem(
-            label: 'New',
+            label: 'new'.tr(),
             icon: _selectedIndex == 2
                 ? SvgPicture.asset('assets/icons/create-bold.svg')
                 : SvgPicture.asset('assets/icons/create.svg'),
           ),
           BottomNavigationBarItem(
-            label: 'Saved',
+            label: 'saved'.tr(),
             icon: _selectedIndex == 3
                 ? SvgPicture.asset('assets/icons/saved-bold.svg')
                 : SvgPicture.asset('assets/icons/saved.svg'),
           ),
           BottomNavigationBarItem(
-            label: 'Profile',
+            label: 'profile'.tr(),
             icon: _selectedIndex == 4
                 ? SvgPicture.asset('assets/icons/profile-bold.svg')
                 : SvgPicture.asset('assets/icons/profile.svg'),

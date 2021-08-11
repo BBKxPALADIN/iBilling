@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../ui/screens.dart';
 
 class Pages {
@@ -13,27 +14,24 @@ class Pages {
 
 class Titles {
   static List<String> labels = <String>[
-    'Contracts',
-    'History',
-    'New Contract',
-    'Saved',
-    'Profile',
-    'New Invoice',
+    'contracts',
+    'history',
+    'new_contract',
+    'saved',
+    'profile',
+    'new_invoice',
   ];
-}
 
-class Status {
   static List<String> statuses = <String>[
-    'Paid',
-    'In process',
-    'Rejected by IQ',
-    'Rejected by Payme',
+    'paid',
+    'in_process',
+    'rejected_by_IQ',
+    'rejected_by_payme',
+  ];
+
+  static List<String> entity=<String>[
+    'individual',
+    'legal_entity',
   ];
 }
 
-class Entity{
-  static List<String> entity=<String>[
-    'Individual',
-    'Legal Entity',
-  ];
-}

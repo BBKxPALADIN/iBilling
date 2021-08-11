@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../demo_localization.dart';
 import '../../theme/color.dart';
 import 'language_options.dart';
 import '../../theme/themes.dart';
@@ -14,8 +13,11 @@ class ProfileCard extends StatefulWidget {
 }
 
 class _ProfileCardState extends State<ProfileCard> {
-  static String currentLanguage = 'O\'zbek (Lotin)';
-  static SvgPicture currentSvg = SvgPicture.asset('assets/icons/uz.svg');
+  var lang = {
+    'English (USA)': SvgPicture.asset('assets/icons/en.svg'),
+    'Русский': SvgPicture.asset('assets/icons/ru.svg'),
+    'O\'zbek (Lotin)': SvgPicture.asset('assets/icons/uz.svg'),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -71,8 +73,7 @@ class _ProfileCardState extends State<ProfileCard> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          DemoLocalization.of(context)
-                              .getTranslatedValue('date_of_birth'),
+                          '${'date_of_birth'.tr()}:    ',
                           style: BillingThemes.textTheme.headline6,
                         ),
                         const SizedBox(width: 8),
@@ -87,8 +88,7 @@ class _ProfileCardState extends State<ProfileCard> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          DemoLocalization.of(context)
-                              .getTranslatedValue('phone_number'),
+                          '${'phone_number'.tr()}:    ',
                           style: BillingThemes.textTheme.headline6,
                         ),
                         const SizedBox(width: 8),
@@ -103,8 +103,7 @@ class _ProfileCardState extends State<ProfileCard> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          DemoLocalization.of(context)
-                              .getTranslatedValue('email'),
+                          '${'email'.tr()}:    ',
                           style: BillingThemes.textTheme.headline6,
                         ),
                         const SizedBox(width: 8),
@@ -132,19 +131,17 @@ class _ProfileCardState extends State<ProfileCard> {
                 onPressed: () {
                   showDialog(
                       context: context,
-                      builder: (BuildContext context) => LanguageOption(
-                            currentLanguage: currentLanguage,
-                            currentSvg: currentSvg,
-                          ));
+                      builder: (BuildContext context) =>
+                          const LanguageOption());
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      currentLanguage,
+                      'language'.tr(),
                       style: BillingThemes.textTheme.headline6,
                     ),
-                    currentSvg,
+                    lang['language'.tr()],
                   ],
                 ),
               ),

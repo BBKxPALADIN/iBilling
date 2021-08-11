@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../components/components.dart';
 import '../../theme/color.dart';
 import '../../theme/themes.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DropDownEntity extends StatefulWidget {
   const DropDownEntity({Key key}) : super(key: key);
@@ -12,7 +13,7 @@ class DropDownEntity extends StatefulWidget {
 }
 
 class _DropDownEntityState extends State<DropDownEntity> {
-  final String title='Entity';
+  final String title='entity'.tr();
   String dropValue;
   bool isActive=false;
 
@@ -57,7 +58,7 @@ class _DropDownEntityState extends State<DropDownEntity> {
               });
             },
             items:
-            Entity.entity.map<DropdownMenuItem<String>>((String value) {
+            Titles.entity.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Row(

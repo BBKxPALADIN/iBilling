@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import '../theme/themes.dart';
 import 'package:jiffy/jiffy.dart';
 import '../blocs/history/history_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DateFilter extends StatelessWidget {
   const DateFilter({Key key}) : super(key: key);
@@ -14,10 +15,10 @@ class DateFilter extends StatelessWidget {
 
     String displayPickedDate(String time) {
       if (time == '1') {
-        if (historyBloc.getInitialPeriod == '') return 'from';
+        if (historyBloc.getInitialPeriod == '') return 'from'.tr();
         return Jiffy(historyBloc.getInitialPeriod).format('dd.MM.yyyy');
       } else if (time == '2') {
-        if (historyBloc.getInitialPeriod == '') return 'to';
+        if (historyBloc.getInitialPeriod == '') return 'to'.tr();
         return Jiffy(historyBloc.getLastPeriod).format('dd.MM.yyyy');
       } else
         return '';
@@ -30,7 +31,7 @@ class DateFilter extends StatelessWidget {
           children: [
             SizedBox(height: constraint.maxHeight * 0.15),
             Text(
-              'Date',
+              'date'.tr(),
               style: BillingThemes.textTheme.headline2,
             ),
             SizedBox(height: constraint.maxHeight * 0.15),
@@ -53,7 +54,7 @@ class DateFilter extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 5),
                           child: Text(
                             displayPickedDate('1') == ''
-                                ? 'From'
+                                ? 'from'.tr()
                                 : '${displayPickedDate('1')}',
                             style: BillingThemes.textTheme.bodyText2,
                             textAlign: TextAlign.center,
@@ -98,7 +99,7 @@ class DateFilter extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 5),
                           child: Text(
                             displayPickedDate('2') == ''
-                                ? 'To'
+                                ? 'to'.tr()
                                 : '${displayPickedDate('2')}',
                             style: BillingThemes.textTheme.bodyText2,
                             textAlign: TextAlign.center,

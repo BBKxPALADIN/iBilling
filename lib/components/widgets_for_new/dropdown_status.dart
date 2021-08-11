@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../components/components.dart';
 import '../../theme/color.dart';
 import '../../theme/themes.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DropDownStatus extends StatefulWidget {
   const DropDownStatus({
@@ -14,7 +15,7 @@ class DropDownStatus extends StatefulWidget {
 }
 
 class _DropDownStatusState extends State<DropDownStatus> {
-  final String title = 'Status of the invoice';
+  final String title = 'invoice_status'.tr();
   String dropValue;
   bool isActive = false;
 
@@ -60,14 +61,14 @@ class _DropDownStatusState extends State<DropDownStatus> {
               });
             },
             items:
-                Status.statuses.map<DropdownMenuItem<String>>((String value) {
+            Titles.statuses.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      value,
+                      value.tr(),
                       style: BillingThemes.textTheme.bodyText2,
                       textAlign: TextAlign.center,
                     ),

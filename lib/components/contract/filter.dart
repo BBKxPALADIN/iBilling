@@ -4,6 +4,7 @@ import 'filter_checkbox.dart';
 import '../../ui/screens.dart';
 import '../../theme/themes.dart';
 import '../../theme/color.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class FilterPage extends StatefulWidget {
   static const routeName = '/filter';
@@ -28,10 +29,10 @@ class _FilterPageState extends State<FilterPage> {
           },
         ),
         title: Padding(
-          padding:
-              EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.26),
+          padding: EdgeInsets.only(
+              left: MediaQuery.of(context).size.width * 0.25),
           child: Text(
-            'Filters',
+            'filters'.tr(),
             style: BillingThemes.textTheme.headline1
                 .copyWith(color: BillingColor.whiteColor),
           ),
@@ -49,7 +50,7 @@ class _FilterPageState extends State<FilterPage> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
                   child: Text(
-                    'Status',
+                    'status'.tr(),
                     style: BillingThemes.textTheme.headline2,
                   ),
                 ),
@@ -64,16 +65,16 @@ class _FilterPageState extends State<FilterPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CheckBox(status: Status.statuses[0]),
-                          CheckBox(status: Status.statuses[1]),
+                          CheckBox(status: Titles.statuses[0].tr()),
+                          CheckBox(status: Titles.statuses[1].tr()),
                         ],
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CheckBox(status: Status.statuses[2]),
-                          CheckBox(status: Status.statuses[3]),
+                          CheckBox(status: Titles.statuses[2].tr()),
+                          CheckBox(status: Titles.statuses[3].tr()),
                         ],
                       ),
                     ],
@@ -102,7 +103,7 @@ class _FilterPageState extends State<FilterPage> {
                           .pushReplacementNamed(Home.routeName);
                     },
                     child: Text(
-                      'Cancel',
+                      'cancel'.tr(),
                       style: BillingThemes.textTheme.headline2.copyWith(
                         color: BillingColor.lightGreenColor,
                       ),
@@ -123,7 +124,7 @@ class _FilterPageState extends State<FilterPage> {
                           .pushReplacementNamed(Home.routeName);
                     },
                     child: Text(
-                      'Apply filters',
+                      'apply_filters'.tr(),
                       style: BillingThemes.textTheme.headline2.copyWith(
                         color: BillingColor.whiteColor,
                       ),

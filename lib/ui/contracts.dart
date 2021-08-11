@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fooderlich/theme/themes.dart';
+import '../theme/themes.dart';
 import '../components/components.dart';
 import '../theme/color.dart';
 import '../blocs/contracts/contracts_bloc.dart';
 import '../api/mock_contracts_service.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Contracts extends StatefulWidget {
   static const routeName = '/contracts';
@@ -17,8 +18,8 @@ class Contracts extends StatefulWidget {
 
 class _ContractsState extends State<Contracts> {
   final mockService = MockContractsService().getContractResponse();
-  bool _isContract=true;
-  bool _isInvoice=false;
+  bool _isContract = true;
+  bool _isInvoice = false;
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +62,8 @@ class _ContractsState extends State<Contracts> {
                               });
                             },
                             child: Container(
-                              height: 30,
-                              width: MediaQuery.of(context).size.width*0.215,
-                              padding: const EdgeInsets.only(left: 10, top: 5),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 14, vertical: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(7),
                                 color: _isContract
@@ -71,7 +71,7 @@ class _ContractsState extends State<Contracts> {
                                     : BillingColor.darkWorld,
                               ),
                               child: Text(
-                                'Contract',
+                                'contracts'.tr(),
                                 style: BillingThemes.textTheme.headline5,
                               ),
                             ),
@@ -84,9 +84,8 @@ class _ContractsState extends State<Contracts> {
                               });
                             },
                             child: Container(
-                              height: 30,
-                              width: MediaQuery.of(context).size.width*0.2,
-                              padding: const EdgeInsets.only(left: 14, top: 5),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 14, vertical: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(7),
                                 color: _isInvoice
@@ -94,7 +93,7 @@ class _ContractsState extends State<Contracts> {
                                     : BillingColor.darkWorld,
                               ),
                               child: Text(
-                                'Invoice',
+                                'invoice'.tr(),
                                 style: BillingThemes.textTheme.headline5,
                               ),
                             ),

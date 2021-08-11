@@ -3,30 +3,41 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../theme/color.dart';
 import '../../models/contract.dart';
 import '../../theme/themes.dart';
+import '../const_classes.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class InvoicesListView extends StatelessWidget {
-  final Invoice invoice;
+  final Invoice invoices;
 
   const InvoicesListView({
     Key key,
-    this.invoice,
+    this.invoices,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var status=invoices.invoiceStatus;
+
     Color statusBackClr;
     Color statusTextClr;
-    if (invoice.invoiceStatus == 'Paid') {
+    if (status == 'Paid') {
       statusBackClr = BillingColor.darkGreenColor;
       statusTextClr = BillingColor.lightGreenColor;
-    } else if (invoice.invoiceStatus == 'In process') {
+      status=Titles.statuses[0].tr();
+    } else if (status == 'In process') {
       statusBackClr = BillingColor.darkOrangeColor;
       statusTextClr = BillingColor.lightOrangeColor;
-    } else if (invoice.invoiceStatus == 'Rejected by Payme' ||
-        invoice.invoiceStatus == 'Rejected by IQ') {
+      status=Titles.statuses[1].tr();
+    } else if (status == 'Rejected by IQ') {
       statusBackClr = BillingColor.darkRedColor;
       statusTextClr = BillingColor.lightRedColor;
+      status=Titles.statuses[2].tr();
+    }else if (status == 'Rejected by Payme') {
+      statusBackClr = BillingColor.darkRedColor;
+      statusTextClr = BillingColor.lightRedColor;
+      status=Titles.statuses[3].tr();
     }
+
 
     return Padding(
       padding: const EdgeInsets.only(top: 12),
@@ -64,7 +75,7 @@ class InvoicesListView extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 3, bottom: 3, left: 10, right: 10),
                     child: Text(
-                      invoice.invoiceStatus,
+                      status,
                       style: BillingThemes.textTheme.headline6.copyWith(
                         color: statusTextClr,
                         fontSize: 12,
@@ -80,10 +91,10 @@ class InvoicesListView extends StatelessWidget {
               children: [
                 RichText(
                   text: TextSpan(
-                    text: 'Service Name:   ',
+                    text: '${'service_name'.tr()}:   ',
                     children: [
                       TextSpan(
-                        text: invoice.serviceName,
+                        text: invoices.serviceName,
                         style: BillingThemes.textTheme.bodyText2,
                       )
                     ],
@@ -96,17 +107,17 @@ class InvoicesListView extends StatelessWidget {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: 'Total amount of Invoice:   ',
+                        text: '${'amount_of_invoice'.tr()}:   ',
                         children: [
                           TextSpan(
-                            text: '${invoice.amountOfInvoice}',
+                            text: '${invoices.amountOfInvoice}',
                             style: BillingThemes.textTheme.bodyText2,
                           )
                         ],
                       ),
                     ),
                     Text(
-                      invoice.createdAt,
+                      invoices.createdAt,
                       style: BillingThemes.textTheme.headline2,
                     ),
                   ],

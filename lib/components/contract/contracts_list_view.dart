@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fooderlich/components/components.dart';
 import '../../theme/color.dart';
 import '../../models/contract.dart';
 import '../../theme/themes.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ContractsListView extends StatelessWidget {
   final Contract contract;
@@ -14,18 +16,26 @@ class ContractsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var status=contract.contractStatus;
+
     Color statusBackClr;
     Color statusTextClr;
-    if (contract.contractStatus == 'Paid') {
+    if (status == 'Paid') {
       statusBackClr = BillingColor.darkGreenColor;
       statusTextClr = BillingColor.lightGreenColor;
-    } else if (contract.contractStatus == 'In process') {
+      status=Titles.statuses[0].tr();
+    } else if (status == 'In process') {
       statusBackClr = BillingColor.darkOrangeColor;
       statusTextClr = BillingColor.lightOrangeColor;
-    } else if (contract.contractStatus == 'Rejected by Payme' ||
-        contract.contractStatus == 'Rejected by IQ') {
+      status=Titles.statuses[1].tr();
+    } else if (status == 'Rejected by IQ') {
       statusBackClr = BillingColor.darkRedColor;
       statusTextClr = BillingColor.lightRedColor;
+      status=Titles.statuses[2].tr();
+    }else if (status == 'Rejected by Payme') {
+      statusBackClr = BillingColor.darkRedColor;
+      statusTextClr = BillingColor.lightRedColor;
+      status=Titles.statuses[3].tr();
     }
 
     return Padding(
@@ -64,7 +74,7 @@ class ContractsListView extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 3, bottom: 3, left: 10, right: 10),
                     child: Text(
-                      contract.contractStatus,
+                      status,
                       style: BillingThemes.textTheme.headline6.copyWith(
                         color: statusTextClr,
                         fontSize: 12,
@@ -80,7 +90,7 @@ class ContractsListView extends StatelessWidget {
               children: [
                 RichText(
                   text: TextSpan(
-                    text: 'Fish:   ',
+                    text: '${'full_name'.tr()}:   ',
                     children: [
                       TextSpan(
                         text: contract.fullName,
@@ -92,7 +102,7 @@ class ContractsListView extends StatelessWidget {
                 const SizedBox(height: 7),
                 RichText(
                   text: TextSpan(
-                    text: 'Amount:   ',
+                    text: '${'amount'.tr()}:   ',
                     children: [
                       TextSpan(
                         text: '${contract.amount} UZS',
@@ -104,7 +114,7 @@ class ContractsListView extends StatelessWidget {
                 const SizedBox(height: 7),
                 RichText(
                   text: TextSpan(
-                    text: 'Last Invoice:   ',
+                    text: '${'last_invoice'.tr()}:   ',
                     children: [
                       TextSpan(
                         text: '№ ${contract.lastInvoice}',
@@ -119,7 +129,7 @@ class ContractsListView extends StatelessWidget {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: 'Number of Invoice:   ',
+                        text: '${'number_of_invoice'.tr()}:   ',
                         children: [
                           TextSpan(
                             text: '${contract.invoiceAmount}',

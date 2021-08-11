@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../components/components.dart';
 import '../../theme/color.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class NewInvoice extends StatefulWidget {
   static const routeName = '/newInvoice';
@@ -25,9 +26,9 @@ class _NewInvoiceState extends State<NewInvoice> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomTextField(title: 'Service Name'),
+              CustomTextField(title: 'service_name'.tr()),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              const CustomTextField(title: 'Total Amount of Invoice'),
+              CustomTextField(title: 'amount_of_invoice'.tr()),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               const DropDownStatus(),
             ],

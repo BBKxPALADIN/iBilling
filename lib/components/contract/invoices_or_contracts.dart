@@ -96,11 +96,11 @@ class _InvoicesOrContractsState extends State<InvoicesOrContracts> {
                 children: [
                   if (state is LoadedInvoicesState)
                     ...state.invoices
-                        .map((e) => InvoicesListView(invoice: e))
+                        .map((e) => InvoicesListView(invoices: e))
                         .toList()
                   else if (state is FilteredInvoicesByDate)
                     ...state.filteredInvoices
-                        .map((e) => InvoicesListView(invoice: e))
+                        .map((e) => InvoicesListView(invoices: e))
                         .toList()
                 ],
               ),

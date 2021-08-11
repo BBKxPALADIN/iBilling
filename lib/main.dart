@@ -6,8 +6,6 @@ import 'ui/new_contract/new_contract.dart';
 import 'ui/new_contract/new_invoice.dart';
 import 'components/contract/filter.dart';
 import 'ui/contracts.dart';
-import 'blocs/localization/localization_bloc.dart';
-import 'components/demo_localization.dart';
 import 'ui/home.dart';
 import 'blocs/contracts/contracts_bloc.dart';
 import 'theme/themes.dart';
@@ -26,7 +24,7 @@ void main() async {
         Locale('ru'),
       ],
       path: 'assets/languages',
-      fallbackLocale: const Locale('en'),
+      fallbackLocale: const Locale('ru'),
     ),
   );
 }
@@ -34,28 +32,11 @@ void main() async {
 class MyProject extends StatefulWidget {
   const MyProject({Key key}) : super(key: key);
 
-  static void setLocale(BuildContext context, Locale locale) {
-    final state = context.findAncestorStateOfType<_MyProjectState>();
-    state.setLocale(locale);
-    print('-----------main.dart----setLocale------------'
-        '${locale.toString()}------------------------------');
-  }
-
   @override
   _MyProjectState createState() => _MyProjectState();
 }
 
 class _MyProjectState extends State<MyProject> {
-  Locale _locale;
-
-  void setLocale(Locale locale) {
-    setState(() {
-      _locale = locale;
-    });
-    print('-----------main.dart--------------'
-        '${_locale.toString()}-----set new locale-------------------------');
-  }
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -74,9 +55,7 @@ class _MyProjectState extends State<MyProject> {
         debugShowCheckedModeBanner: false,
         home: const Home(),
         theme: BillingThemes.dark(),
-        localizationsDelegates: [
-          DemoLocalization.delegate,
-        ],
+        localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         routes: {

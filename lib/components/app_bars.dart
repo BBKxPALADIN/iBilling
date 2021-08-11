@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'const_classes.dart';
 import 'contract/filter.dart';
 import '../theme/color.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 // ignore: must_be_immutable
 class AppBars extends StatelessWidget {
@@ -24,7 +25,7 @@ class AppBars extends StatelessWidget {
           const Image(image: AssetImage('assets/icons/ellipse.png')),
           const SizedBox(width: 12),
           Text(
-            Titles.labels[selectedIndex],
+            (Titles.labels[selectedIndex]).tr(),
             style: const TextStyle(
               fontFamily: 'Ubuntu',
               fontSize: 18,
