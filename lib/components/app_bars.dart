@@ -25,7 +25,7 @@ class AppBars extends StatelessWidget {
           const Image(image: AssetImage('assets/icons/ellipse.png')),
           const SizedBox(width: 12),
           Text(
-            (Titles.labels[selectedIndex]).tr(),
+            Titles.labels[selectedIndex].tr(),
             style: const TextStyle(
               fontFamily: 'Ubuntu',
               fontSize: 18,

@@ -16,29 +16,24 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      color: BillingColor.darkWorld,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 13),
-            height: MediaQuery.of(context).size.height * 0.18,
-            child: const DateFilter(),
-          ),
-          Expanded(
-            child: BlocProvider.of<HistoryBloc>(context).historyContracts == []
-                ? Expanded(
-                    child: Center(
-                      child: SvgPicture.asset('assets/icons/no_history.svg'),
-                    ),
-                  )
-                : const HistoryContracts(),
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 13),
+          height: MediaQuery.of(context).size.height * 0.18,
+          child: const DateFilter(),
+        ),
+        Expanded(
+          child: BlocProvider.of<HistoryBloc>(context).historyContracts == []
+              ? Expanded(
+                  child: Center(
+                    child: SvgPicture.asset('assets/icons/no_history.svg'),
+                  ),
+                )
+              : const HistoryContracts(),
+        ),
+      ],
     );
   }
 }

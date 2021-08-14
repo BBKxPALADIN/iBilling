@@ -36,6 +36,8 @@
   "ITN": "INN",
   "save": "Shartnomani Saqlash",
   "entity": "Shaxs",
-  "invoice_status": "Schot-fakt. statusi",
-  "language": "O'zbek (Lotin)"
+  "invoice_status": "Schot-fakt. Statusi",
+  "language": "O'zbek (Lotin)",
+  "created_at": "Yaratilgan sana",
+  "delete": "Shartnomani o'chirish"
 }

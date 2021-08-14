@@ -37,5 +37,7 @@
   "save": "Save",
   "entity": "Entity",
   "invoice_status": "Status of the invoice",
-  "language": "English (USA)"
+  "language": "English (USA)",
+  "created_at": "Created at",
+  "delete": "Delete contract"
 }

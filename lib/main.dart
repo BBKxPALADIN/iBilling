@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fooderlich/blocs/history/history_bloc.dart';
-import 'package:fooderlich/blocs/invoices/invoices_bloc.dart';
+import 'blocs/history/history_bloc.dart';
+import 'blocs/invoices/invoices_bloc.dart';
 import 'ui/new_contract/new_contract.dart';
 import 'ui/new_contract/new_invoice.dart';
 import 'components/contract/filter.dart';
@@ -24,7 +24,8 @@ void main() async {
         Locale('ru'),
       ],
       path: 'assets/languages',
-      fallbackLocale: const Locale('ru'),
+      fallbackLocale: const Locale('en'),
+      saveLocale: true,
     ),
   );
 }

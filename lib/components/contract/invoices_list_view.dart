@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jiffy/jiffy.dart';
 import '../../theme/color.dart';
 import '../../models/contract.dart';
 import '../../theme/themes.dart';
@@ -117,7 +118,8 @@ class InvoicesListView extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      invoices.createdAt,
+                      '${Jiffy(invoices.createdAt)
+                          .format('dd.MM.yyyy')}',
                       style: BillingThemes.textTheme.headline2,
                     ),
                   ],

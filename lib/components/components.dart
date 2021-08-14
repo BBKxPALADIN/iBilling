@@ -5,7 +5,6 @@ export './profile/profile_card.dart';
 export 'alert_dialog.dart';
 export 'app_bars.dart';
 export 'date_filter.dart';
-export './widgets_for_new/custom_text_field.dart';
 export './contract/invoices_or_contracts.dart';
 export 'const_classes.dart';
 export './widgets_for_new/dropdown_status.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fooderlich/components/components.dart';
+import '../components.dart';
+import 'package:jiffy/jiffy.dart';
 import '../../theme/color.dart';
 import '../../models/contract.dart';
 import '../../theme/themes.dart';
@@ -139,7 +140,8 @@ class ContractsListView extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      contract.createdAt,
+                      '${Jiffy(contract.createdAt)
+                          .format('dd.MM.yyyy')}',
                       style: BillingThemes.textTheme.headline2,
                     ),
                   ],

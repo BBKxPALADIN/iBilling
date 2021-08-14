@@ -30,9 +30,9 @@ class _HomeState extends State<Home> {
             );
           });
     }
-      setState(() {
-        _selectedIndex = index;
-      });
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -42,7 +42,14 @@ class _HomeState extends State<Home> {
         child: AppBars(selectedIndex: _selectedIndex),
         preferredSize: const Size.fromHeight(kToolbarHeight),
       ),
-      body: Pages.pages[_selectedIndex],
+      body: Container(
+        decoration: const BoxDecoration(
+          color: BillingColor.darkWorld,
+        ),
+        height: double.infinity,
+        width: double.infinity,
+        child: Pages.pages[_selectedIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: BillingColor.darkestColor,
         type: BottomNavigationBarType.fixed,

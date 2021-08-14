@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fooderlich/blocs/invoices/invoices_bloc.dart';
+import '../../../blocs/invoices/invoices_bloc.dart';
 import '../../../blocs/contracts/contracts_bloc.dart';
 import '../../../theme/color.dart';
 import '../../../theme/themes.dart';

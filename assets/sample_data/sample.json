@@ -7,7 +7,7 @@
       "last_invoice": 156,
       "invoice_amount": 6,
       "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
-      "created_at": "2021-08-03",
+      "created_at": "2021-08-03 13:40:26.572236",
       "organization_itn": 5647520318
     },
     {
@@ -17,7 +17,7 @@
       "last_invoice": 156,
       "invoice_amount": 5,
       "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
-      "created_at": "2021-08-02",
+      "created_at": "2021-08-02 13:40:26.572236",
       "organization_itn": 5647520318
     },
     {
@@ -27,7 +27,7 @@
       "last_invoice": 156,
       "invoice_amount": 4,
       "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
-      "created_at": "2021-08-04",
+      "created_at": "2021-08-04 13:40:26.572236",
       "organization_itn": 5647520318
     },
     {
@@ -37,7 +37,7 @@
       "last_invoice": 156,
       "invoice_amount": 6,
       "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
-      "created_at": "2021-08-03",
+      "created_at": "2021-08-10 13:40:26.572236",
       "organization_itn": 5647520318
     },
     {
@@ -47,7 +47,7 @@
       "last_invoice": 156,
       "invoice_amount": 5,
       "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
-      "created_at": "2021-08-02",
+      "created_at": "2021-08-11 13:40:26.572236",
       "organization_itn": 5647520318
     },
     {
@@ -57,7 +57,7 @@
       "last_invoice": 156,
       "invoice_amount": 4,
       "address": "Проспект Мирзо-Улугбек, дом 58, Мирзо-Улугбекский район, Ташкент",
-      "created_at": "2021-08-04",
+      "created_at": "2021-08-04 15:40:26.572236",
       "organization_itn": 5647520318
     }
   ],
@@ -66,7 +66,7 @@
       "service_name": "Computer Graphics",
       "amount_of_invoice": 1250000,
       "invoice_status": "Rejected by IQ",
-      "created_at": "2021-08-04"
+      "created_at": "2021-08-04 20:40:26.572236"
     }
   ]
 }

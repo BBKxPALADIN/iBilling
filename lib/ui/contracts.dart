@@ -24,17 +24,12 @@ class _ContractsState extends State<Contracts> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ContractsBloc, ContractsState>(
-      builder: (context, state) => Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: BillingColor.darkWorld,
-        ),
-        child: Column(
+      builder: (context, state) => LayoutBuilder(
+        builder: (_, constrain) => Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.18,
+              height: constrain.maxHeight * 0.23,
               decoration: const BoxDecoration(
                 color: BillingColor.darkerColor,
                 boxShadow: <BoxShadow>[
@@ -49,10 +44,11 @@ class _ContractsState extends State<Contracts> {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 12, top: 16, right: 12),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Row(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: constrain.maxHeight * 0.065,
+                      child: Row(
                         children: [
                           MaterialButton(
                             onPressed: () {
@@ -100,9 +96,11 @@ class _ContractsState extends State<Contracts> {
                           ),
                         ],
                       ),
-                      InvoicesOrContracts(isContracts: _isContract),
-                    ],
-                  ),
+                    ),
+                    Expanded(
+                      child: InvoicesOrContracts(isContracts: _isContract),
+                    ),
+                  ],
                 ),
               ),
             ),

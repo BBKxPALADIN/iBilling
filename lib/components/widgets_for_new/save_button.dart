@@ -1,20 +1,9 @@
-import 'package:flutter/material.dart';
-import '../../theme/color.dart';
-import '../../theme/themes.dart';
-import '../../ui/screens.dart';
 
-class SaveButton extends StatefulWidget {
-  final title;
+part of '../../ui/new_contract/new_contract.dart';
 
-  const SaveButton({Key key, this.title}) : super(key: key);
 
-  @override
-  _SaveButtonState createState() => _SaveButtonState();
-}
 
-class _SaveButtonState extends State<SaveButton> {
-  @override
-  Widget build(BuildContext context) {
+  Widget buildSaveButton(BuildContext context,bool autoValidate) {
     // ignore: sized_box_for_whitespace
     return Container(
       width: double.infinity,
@@ -25,13 +14,13 @@ class _SaveButtonState extends State<SaveButton> {
         ),
       child: MaterialButton(
         onPressed: () {
+          autoValidate=true;
           Navigator.of(context).pushReplacementNamed(Home.routeName);
         },
         child: Text(
-          widget.title,
+          'save'.tr(),
           style: BillingThemes.textTheme.bodyText1,
         ),
       ),
     );
   }
-}

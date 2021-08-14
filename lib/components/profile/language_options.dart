@@ -5,7 +5,7 @@ import '../../theme/color.dart';
 
 import '../../theme/themes.dart';
 
-// ignore: must_be_immutable
+
 class LanguageOption extends StatefulWidget {
   const LanguageOption({
     Key key,
@@ -16,17 +16,84 @@ class LanguageOption extends StatefulWidget {
 }
 
 class _LanguageOptionState extends State<LanguageOption> {
-
   var language = '';
-
   @override
   Widget build(BuildContext context) {
     final initialLang = context.locale;
+
     return AlertDialog(
       title: Text(
         'choose_language'.tr(),
         style: BillingThemes.textTheme.headline5,
         textAlign: TextAlign.center,
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          ListTile(
+            onTap: () {
+              context.setLocale(const Locale('uz'));
+              language = 'uz';
+
+            },
+            leading: SvgPicture.asset('assets/icons/uz.svg'),
+            title: Text(
+              'O\'zbek (Lotin)',
+              style: BillingThemes.textTheme.headline6,
+            ),
+            trailing: SizedBox(
+              width: 30,
+              child: Radio(
+                value: 'uz',
+                groupValue: language,
+                onChanged: (value) {},
+              ),
+            ),
+          ),
+          ListTile(
+            onTap: () {
+              context.setLocale(const Locale('ru'));
+              language = 'ru';
+
+            },
+            leading: SvgPicture.asset('assets/icons/ru.svg'),
+            title: Text(
+              'Русский',
+              style: BillingThemes.textTheme.headline6,
+            ),
+            trailing: SizedBox(
+              width: 30,
+              child: Radio(
+                value: 'ru',
+                groupValue: language,
+                onChanged: (value) {},
+              ),
+            ),
+          ),
+          ListTile(
+            onTap: () {
+              context.setLocale(const Locale('en'));
+              language = 'en';
+
+            },
+            leading: SvgPicture.asset('assets/icons/en.svg'),
+            title: Text(
+              'English (USA)',
+              style: BillingThemes.textTheme.headline6,
+            ),
+            trailing: SizedBox(
+              width: 30,
+              child: Radio(
+                value: 'en',
+                groupValue: language,
+                onChanged: (value) {},
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+
+        ],
       ),
       actions: [
         Row(
@@ -34,7 +101,9 @@ class _LanguageOptionState extends State<LanguageOption> {
           children: [
             MaterialButton(
               onPressed: () {
+                language = '';
                 context.setLocale(initialLang);
+                setState(() {});
                 Navigator.of(context).pop();
               },
               child: Container(
@@ -55,6 +124,9 @@ class _LanguageOptionState extends State<LanguageOption> {
             ),
             MaterialButton(
               onPressed: () {
+                setState(() {
+                  context.setLocale(Locale(language));
+                });
                 Navigator.of(context).pop();
               },
               child: Container(
@@ -76,76 +148,6 @@ class _LanguageOptionState extends State<LanguageOption> {
           ],
         ),
       ],
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          ListTile(
-            onTap: () {
-              context.setLocale(const Locale('uz'));
-              setState(() {
-                language = 'uz';
-              });
-            },
-            leading: SvgPicture.asset('assets/icons/uz.svg'),
-            title: Text(
-              'O\'zbek (Lotin)',
-              style: BillingThemes.textTheme.headline6,
-            ),
-            trailing: SizedBox(
-              width: 30,
-              child: Radio(
-                value: 'uz',
-                groupValue: language,
-                onChanged: (value) {},
-              ),
-            ),
-          ),
-          ListTile(
-            onTap: () {
-              context.setLocale(const Locale('ru'));
-              setState(() {
-                language = 'ru';
-              });
-            },
-            leading: SvgPicture.asset('assets/icons/ru.svg'),
-            title: Text(
-              'Русский',
-              style: BillingThemes.textTheme.headline6,
-            ),
-            trailing: SizedBox(
-              width: 30,
-              child: Radio(
-                value: 'ru',
-                groupValue: language,
-                onChanged: (value) {},
-              ),
-            ),
-          ),
-          ListTile(
-            onTap: () {
-              context.setLocale(const Locale('en'));
-              setState(() {
-                language = 'en';
-              });
-            },
-            leading: SvgPicture.asset('assets/icons/en.svg'),
-            title: Text(
-              'English (USA)',
-              style: BillingThemes.textTheme.headline6,
-            ),
-            trailing: SizedBox(
-              width: 30,
-              child: Radio(
-                value: 'en',
-                groupValue: language,
-                onChanged: (value) {},
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-        ],
-      ),
     );
   }
 }
