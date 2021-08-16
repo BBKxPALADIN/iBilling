@@ -128,7 +128,7 @@ class _InvoicesOrContractsState extends State<InvoicesOrContracts> {
               );
             }
             return Padding(
-              padding: const EdgeInsets.only(left: 12, top: 16, right: 12),
+              padding: const EdgeInsets.only(left: 8, top: 5, right: 8),
               child: Column(
                 children: [
                   if (state is LoadedInvoicesState)

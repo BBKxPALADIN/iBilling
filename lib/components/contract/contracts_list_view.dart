@@ -40,7 +40,7 @@ class ContractsListView extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.only(top: 12),
+      padding: const EdgeInsets.only(left: 8, top: 10, right: 8),
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(

@@ -87,43 +87,42 @@ class _NewContractState extends State<NewContract> {
                   style: BillingThemes.textTheme.bodyText2,
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                height: MediaQuery.of(context).size.height * 0.07,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    width: 1.7,
-                    color: BillingColor.lightGreyColor,
+              DropdownButtonFormField<String>(
+                validator: (value) {
+                  if (value == null) return 'Entity field is empty!!!';
+                  return null;
+                },
+                dropdownColor: BillingColor.darkColor,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 1.7,
+                      color: BillingColor.lightGreyColor,
+                    ),
                   ),
                 ),
-                child: DropdownButtonFormField<String>(
-                  dropdownColor: BillingColor.darkColor,
-                  decoration: const InputDecoration(
-                    enabledBorder: InputBorder.none,
-                  ),
-                  isExpanded: true,
-                  icon: SvgPicture.asset(
-                    'assets/icons/drop_down.svg',
-                    color: BillingColor.greyColor,
-                  ),
-                  value: entityValue,
-                  onChanged: (newValue) {
-                    setState(() {
-                      entityValue = newValue;
-                    });
-                  },
-                  items: Titles.entity
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value.tr(),
-                        style: BillingThemes.textTheme.bodyText2,
-                      ),
-                    );
-                  }).toList(),
+                isExpanded: true,
+                icon: SvgPicture.asset(
+                  'assets/icons/drop_down.svg',
+                  color: BillingColor.greyColor,
                 ),
+                value: entityValue,
+                onChanged: (newValue) {
+                  setState(() {
+                    entityValue = newValue;
+                  });
+                },
+                items: Titles.entity
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(
+                      value.tr(),
+                      style: BillingThemes.textTheme.bodyText2,
+                    ),
+                  );
+                }).toList(),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               Padding(
@@ -133,34 +132,24 @@ class _NewContractState extends State<NewContract> {
                   style: BillingThemes.textTheme.bodyText2,
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.07,
-                child: TextFormField(
-                  controller: nameController,
-                  keyboardType: TextInputType.text,
-                  validator: (value) {
-                    if (value == '') {
-                      return 'Please write your full name';
-                    } else if (value.length < 5) {
-                      return 'Full Name be less than 6 characters!!!';
-                    }
-                    return null;
-                  },
-                  cursorColor: BillingColor.whiteColor,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.lightGreyColor,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.greyColor,
-                      ),
+              TextFormField(
+                controller: nameController,
+                keyboardType: TextInputType.text,
+                validator: (value) {
+                  if (value == '') {
+                    return 'Please write your full name';
+                  } else if (value.length < 5) {
+                    return 'Full Name be less than 6 characters!!!';
+                  }
+                  return null;
+                },
+                cursorColor: BillingColor.whiteColor,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 1.7,
+                      color: BillingColor.lightGreyColor,
                     ),
                   ),
                 ),
@@ -173,31 +162,21 @@ class _NewContractState extends State<NewContract> {
                   style: BillingThemes.textTheme.bodyText2,
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.07,
-                child: TextFormField(
-                  controller: addressController,
-                  validator: (value) {
-                    if (value == '') {
-                      return 'Address field cannot be empty';
-                    }
-                    return null;
-                  },
-                  cursorColor: BillingColor.whiteColor,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.lightGreyColor,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.greyColor,
-                      ),
+              TextFormField(
+                controller: addressController,
+                validator: (value) {
+                  if (value == '') {
+                    return 'Address field cannot be empty';
+                  }
+                  return null;
+                },
+                cursorColor: BillingColor.whiteColor,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 1.7,
+                      color: BillingColor.lightGreyColor,
                     ),
                   ),
                 ),
@@ -210,34 +189,24 @@ class _NewContractState extends State<NewContract> {
                   style: BillingThemes.textTheme.bodyText2,
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.07,
-                child: TextFormField(
-                  controller: tinController,
-                  keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value == '') {
-                      return 'TIN/ITN field cannot be empty';
-                    } else if (value.length != 10) {
-                      return 'TIN/ITN number should consist of 10 digits!!!';
-                    }
-                    return null;
-                  },
-                  cursorColor: BillingColor.whiteColor,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.lightGreyColor,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.greyColor,
-                      ),
+              TextFormField(
+                controller: tinController,
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == '') {
+                    return 'TIN/ITN field cannot be empty';
+                  } else if (value.length != 10) {
+                    return 'TIN/ITN number should consist of 10 digits!!!';
+                  }
+                  return null;
+                },
+                cursorColor: BillingColor.whiteColor,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 1.7,
+                      color: BillingColor.lightGreyColor,
                     ),
                   ),
                 ),
@@ -251,45 +220,43 @@ class _NewContractState extends State<NewContract> {
                   style: BillingThemes.textTheme.bodyText2,
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                height: MediaQuery.of(context).size.height * 0.07,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    width: 1.7,
-                    color: BillingColor.lightGreyColor,
+              DropdownButtonFormField<String>(
+                validator: (value) {
+                  if (value == null) return 'Status field is empty!!!';
+                  return null;
+                },
+                dropdownColor: BillingColor.darkColor,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 1.7,
+                      color: BillingColor.lightGreyColor,
+                    ),
                   ),
                 ),
-                child: DropdownButtonFormField<String>(
-                  dropdownColor: BillingColor.darkColor,
-                  decoration: const InputDecoration(
-                    enabledBorder: InputBorder.none,
-                    alignLabelWithHint: true,
-                  ),
-                  isExpanded: true,
-                  icon: SvgPicture.asset(
-                    'assets/icons/drop_down.svg',
-                    color: BillingColor.greyColor,
-                  ),
-                  value: statusValue,
-                  onChanged: (newValue) {
-                    setState(() {
-                      statusValue = newValue;
-                    });
-                  },
-                  items: Titles.statuses
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value.tr(),
-                        style: BillingThemes.textTheme.bodyText2,
-                        textAlign: TextAlign.center,
-                      ),
-                    );
-                  }).toList(),
+                isExpanded: true,
+                icon: SvgPicture.asset(
+                  'assets/icons/drop_down.svg',
+                  color: BillingColor.greyColor,
                 ),
+                value: statusValue,
+                onChanged: (newValue) {
+                  setState(() {
+                    statusValue = newValue;
+                  });
+                },
+                items: Titles.statuses
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(
+                      value.tr(),
+                      style: BillingThemes.textTheme.bodyText2,
+                      textAlign: TextAlign.center,
+                    ),
+                  );
+                }).toList(),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Padding(
@@ -299,34 +266,24 @@ class _NewContractState extends State<NewContract> {
                   style: BillingThemes.textTheme.bodyText2,
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.07,
-                child: TextFormField(
-                  controller: amountController,
-                  keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value == '') {
-                      return 'Total Amount of Contract field cannot be empty';
-                    } else if (value.length < 5) {
-                      return 'Amount cannot be less than 6 digits!!!';
-                    }
-                    return null;
-                  },
-                  cursorColor: BillingColor.whiteColor,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.lightGreyColor,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.greyColor,
-                      ),
+              TextFormField(
+                controller: amountController,
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == '') {
+                    return 'Total Amount of Contract field cannot be empty';
+                  } else if (value.length < 5) {
+                    return 'Amount cannot be less than 6 digits!!!';
+                  }
+                  return null;
+                },
+                cursorColor: BillingColor.whiteColor,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 1.7,
+                      color: BillingColor.lightGreyColor,
                     ),
                   ),
                 ),
@@ -339,32 +296,22 @@ class _NewContractState extends State<NewContract> {
                   style: BillingThemes.textTheme.bodyText2,
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.07,
-                child: TextFormField(
-                  controller: invoiceAmountController,
-                  keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value == '') {
-                      return 'Number of invoice field cannot be empty';
-                    }
-                    return null;
-                  },
-                  cursorColor: BillingColor.whiteColor,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.lightGreyColor,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.greyColor,
-                      ),
+              TextFormField(
+                controller: invoiceAmountController,
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == '') {
+                    return 'Number of invoice field cannot be empty';
+                  }
+                  return null;
+                },
+                cursorColor: BillingColor.whiteColor,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 1.7,
+                      color: BillingColor.lightGreyColor,
                     ),
                   ),
                 ),
@@ -377,34 +324,24 @@ class _NewContractState extends State<NewContract> {
                   style: BillingThemes.textTheme.bodyText2,
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.07,
-                child: TextFormField(
-                  controller: lastInvoiceController,
-                  keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value == '') {
-                      return 'Last Invoice field cannot be empty';
-                    } else if (value.length != 3) {
-                      return 'Last invoice number should consist of 3 digits!!!';
-                    }
-                    return null;
-                  },
-                  cursorColor: BillingColor.whiteColor,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.lightGreyColor,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        width: 1.7,
-                        color: BillingColor.greyColor,
-                      ),
+              TextFormField(
+                controller: lastInvoiceController,
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value == '') {
+                    return 'Last Invoice field cannot be empty';
+                  } else if (value.length != 3) {
+                    return 'Last invoice number should consist of 3 digits!!!';
+                  }
+                  return null;
+                },
+                cursorColor: BillingColor.whiteColor,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 1.7,
+                      color: BillingColor.lightGreyColor,
                     ),
                   ),
                 ),

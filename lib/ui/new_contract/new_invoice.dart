@@ -83,18 +83,11 @@ class _NewInvoiceState extends State<NewInvoice> {
                 },
                 cursorColor: BillingColor.whiteColor,
                 decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
+                  border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: const BorderSide(
                       width: 1.7,
                       color: BillingColor.lightGreyColor,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                      width: 1.7,
-                      color: BillingColor.greyColor,
                     ),
                   ),
                 ),
@@ -120,18 +113,11 @@ class _NewInvoiceState extends State<NewInvoice> {
                 },
                 cursorColor: BillingColor.whiteColor,
                 decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
+                  border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: const BorderSide(
                       width: 1.7,
                       color: BillingColor.lightGreyColor,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(
-                      width: 1.7,
-                      color: BillingColor.greyColor,
                     ),
                   ),
                 ),
@@ -145,55 +131,48 @@ class _NewInvoiceState extends State<NewInvoice> {
                   style: BillingThemes.textTheme.bodyText2,
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                alignment: Alignment.center,
-                height: MediaQuery.of(context).size.height * 0.07,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    width: 1.7,
-                    color: BillingColor.lightGreyColor,
+              DropdownButtonFormField<String>(
+                validator: (value) {
+                  if (value == null) return 'Status field is empty!!!';
+                  return null;
+                },
+                dropdownColor: BillingColor.darkColor,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      width: 1.7,
+                      color: BillingColor.lightGreyColor,
+                    ),
                   ),
                 ),
-                child: DropdownButtonFormField<String>(
-                  validator: (value) {
-                    if (value == '') return 'Status is empty!!!';
-                    return null;
-                  },
-                  dropdownColor: BillingColor.darkColor,
-                  decoration: const InputDecoration(
-                    enabledBorder: InputBorder.none,
-                    alignLabelWithHint: true,
-                  ),
-                  isExpanded: true,
-                  icon: SvgPicture.asset(
-                    'assets/icons/drop_down.svg',
-                    color: BillingColor.greyColor,
-                  ),
-                  value: invoiceStatus,
-                  onChanged: (newValue) {
-                    setState(() {
-                      invoiceStatus = newValue;
-                    });
-                  },
-                  items: Titles.statuses
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            value.tr(),
-                            style: BillingThemes.textTheme.bodyText2,
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    );
-                  }).toList(),
+                isExpanded: true,
+                icon: SvgPicture.asset(
+                  'assets/icons/drop_down.svg',
+                  color: BillingColor.greyColor,
                 ),
+                value: invoiceStatus,
+                onChanged: (newValue) {
+                  setState(() {
+                    invoiceStatus = newValue;
+                  });
+                },
+                items: Titles.statuses
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          value.tr(),
+                          style: BillingThemes.textTheme.bodyText2,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               Container(
