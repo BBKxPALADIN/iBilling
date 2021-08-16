@@ -7,7 +7,7 @@ import '../../blocs/contracts/contracts_bloc.dart';
 import '../components.dart';
 
 class InvoicesOrContracts extends StatefulWidget {
-  final isContracts;
+  final bool isContracts;
 
   const InvoicesOrContracts({Key key, this.isContracts}) : super(key: key);
 
@@ -24,7 +24,7 @@ class _InvoicesOrContractsState extends State<InvoicesOrContracts> {
   Widget build(BuildContext context) {
     if (widget.isContracts) {
       return BlocBuilder<ContractsBloc, ContractsState>(
-        builder: (context, state) {
+        builder: (ctx, state) {
           if (state is LoadingContractsState ||
               state is ContractsInitialState ||
               state is FilteringContractsByDate) {
@@ -33,9 +33,7 @@ class _InvoicesOrContractsState extends State<InvoicesOrContracts> {
               state is FilteredContractsByDate) {
             if (state is FilteredContractsByDate &&
                 state.filteredContracts.isEmpty) {
-              return Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.15),
+              return Center(
                 child: SvgPicture.asset('assets/icons/no_contracts.svg'),
               );
             }
@@ -67,6 +65,37 @@ class _InvoicesOrContractsState extends State<InvoicesOrContracts> {
                   );
                 },
               );
+            else if (state is FilteredContractsByDate) {
+              return ListView.builder(
+                itemCount: state.filteredContracts.length,
+                itemBuilder: (_, index) {
+                  return GestureDetector(
+                    onLongPress: () {
+                      createdAt =
+                          state.filteredContracts[index].createdAt.toString();
+                      detailed = !detailed;
+                      chosenIndex = index;
+                      setState(() {});
+                    },
+                    onDoubleTap: () {
+                      detailed = false;
+                      setState(() {});
+                    },
+                    child: detailed &&
+                            chosenIndex == index &&
+                            createdAt ==
+                                state.filteredContracts[index].createdAt
+                                    .toString()
+                        ? DetailedContractsListView(
+                            contract: state.filteredContracts[chosenIndex],
+                          )
+                        : ContractsListView(
+                            contract: state.filteredContracts[index],
+                          ),
+                  );
+                },
+              );
+            }
           } else if (state is FailedToFilterContractsByDate ||
               state is FailedToLoadContractsState) {
             return Center(
@@ -85,7 +114,7 @@ class _InvoicesOrContractsState extends State<InvoicesOrContracts> {
       );
     } else {
       return BlocBuilder<InvoicesBloc, InvoicesState>(
-        builder: (context, state) {
+        builder: (ctx, state) {
           if (state is LoadingInvoicesState ||
               state is InvoicesInitialState ||
               state is FilteringInvoicesByDate) {
@@ -94,9 +123,7 @@ class _InvoicesOrContractsState extends State<InvoicesOrContracts> {
               state is FilteredInvoicesByDate) {
             if (state is FilteredInvoicesByDate &&
                 state.filteredInvoices.isEmpty) {
-              return Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.15),
+              return Center(
                 child: SvgPicture.asset('assets/icons/no_contracts.svg'),
               );
             }

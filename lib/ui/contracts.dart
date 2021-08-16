@@ -4,7 +4,6 @@ import '../theme/themes.dart';
 import '../components/components.dart';
 import '../theme/color.dart';
 import '../blocs/contracts/contracts_bloc.dart';
-import '../api/mock_contracts_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class Contracts extends StatefulWidget {
@@ -17,14 +16,13 @@ class Contracts extends StatefulWidget {
 }
 
 class _ContractsState extends State<Contracts> {
-  final mockService = MockContractsService().getContractResponse();
   bool _isContract = true;
   bool _isInvoice = false;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ContractsBloc, ContractsState>(
-      builder: (context, state) => LayoutBuilder(
+      builder: (_, state) => LayoutBuilder(
         builder: (_, constrain) => Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

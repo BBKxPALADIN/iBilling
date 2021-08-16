@@ -21,19 +21,19 @@ class ContractsListView extends StatelessWidget {
 
     Color statusBackClr;
     Color statusTextClr;
-    if (status == 'Paid') {
+    if (status == 'Paid'||status=='paid') {
       statusBackClr = BillingColor.darkGreenColor;
       statusTextClr = BillingColor.lightGreenColor;
       status=Titles.statuses[0].tr();
-    } else if (status == 'In process') {
+    } else if (status == 'In process'||status == 'in_process') {
       statusBackClr = BillingColor.darkOrangeColor;
       statusTextClr = BillingColor.lightOrangeColor;
       status=Titles.statuses[1].tr();
-    } else if (status == 'Rejected by IQ') {
+    } else if (status == 'Rejected by IQ'||status == 'rejected_by_IQ') {
       statusBackClr = BillingColor.darkRedColor;
       statusTextClr = BillingColor.lightRedColor;
       status=Titles.statuses[2].tr();
-    }else if (status == 'Rejected by Payme') {
+    }else if (status == 'Rejected by Payme'||status == 'rejected_by_payme') {
       statusBackClr = BillingColor.darkRedColor;
       statusTextClr = BillingColor.lightRedColor;
       status=Titles.statuses[3].tr();

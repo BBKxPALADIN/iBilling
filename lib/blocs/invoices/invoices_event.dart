@@ -14,5 +14,5 @@ class FilterInvoicesByDate extends InvoicesEvent{
 class AddNewInvoiceEvent extends InvoicesEvent{
   final Invoice invoice;
 
-  AddNewInvoiceEvent(this.invoice);
+  AddNewInvoiceEvent({this.invoice});
 }

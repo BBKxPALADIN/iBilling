@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../theme/color.dart';
 
 class Saved extends StatefulWidget {
   const Saved({Key key}) : super(key: key);

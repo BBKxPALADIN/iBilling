@@ -10,6 +10,9 @@ part 'contracts_event.dart';
 part 'contracts_state.dart';
 
 class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
+
+  ContractsBloc() : super(ContractsInitialState());
+
   List<Contract> mockData = [];
   String _date;
   List<Contract> filteredContracts = [];
@@ -18,7 +21,20 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
   int isChanged=0;
 
   Future<void> getMockData() async {
-    mockData = await MockContractsService().getContractResponse();
+    try{
+      mockData = await MockContractsService().getContractResponse();
+    }catch(error){
+      print(error);
+      mockData=[];
+    }
+  }
+
+  void set setNewContract(Contract newContract) {
+    this.newContract = newContract;
+  }
+
+  Contract get getNewContract {
+    return newContract;
   }
 
   void set setData(String param) {
@@ -37,13 +53,6 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
     return contractToDelete;
   }
 
-  set setNewContract(Contract newContract) {
-    this.newContract = newContract;
-  }
-
-  Contract get getNewContract {
-    return newContract;
-  }
 
   void deleteContractRequest() {
     final newList = <Contract>[];
@@ -57,7 +66,6 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
 
   Future<void> fetchContractsByDate(DateTime dateTime) async {
     filteredContracts = [];
-    await getMockData();
 
     mockData.forEach((contract) {
       try {
@@ -67,7 +75,6 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
             dateTime.month == contractDate.month &&
             dateTime.year == contractDate.year) {
           filteredContracts.add(contract);
-          filteredContracts.isEmpty;
         }
       } catch (error) {
         filteredContracts = [];
@@ -75,7 +82,6 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
     });
   }
 
-  ContractsBloc() : super(ContractsInitialState());
 
   @override
   Stream<ContractsState> mapEventToState(
@@ -104,7 +110,7 @@ class ContractsBloc extends Bloc<ContractsEvent, ContractsState> {
         yield FailedToFilterContractsByDate(error: '$error');
       }
     } else if (contractsEvent is AddNewContractEvent) {
-      yield AddedNewContract();
+      yield AddingNewContract();
       final newContract =
           AddNewContractEvent(contract: getNewContract).contract;
       mockData.add(newContract);

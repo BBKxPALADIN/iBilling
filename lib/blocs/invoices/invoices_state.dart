@@ -7,7 +7,7 @@ class InvoicesInitialState extends InvoicesState {}
 
 class LoadingInvoicesState extends InvoicesState {}
 
-// Loading all contracts states
+
 class LoadedInvoicesState extends InvoicesState {
   final List<Invoice> invoices;
 
@@ -39,7 +39,7 @@ class FailedToFilterInvoicesByDate extends InvoicesState {
 class AddingNewInvoice extends InvoicesState {}
 
 class AddedNewInvoice extends InvoicesState {
-  final Contract invoice;
+  final Invoice invoice;
 
   AddedNewInvoice({this.invoice});
 }

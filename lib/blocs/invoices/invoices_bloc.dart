@@ -15,9 +15,23 @@ class InvoicesBloc extends Bloc<InvoicesEvent, InvoicesState> {
   List<Invoice> mockData = [];
   String _date;
   List<Invoice> filteredInvoices = [];
+  Invoice newInvoice;
 
   Future<void> getMockData() async {
-    mockData = await MockContractsService().getInvoiceResponse();
+   try{
+     mockData = await MockContractsService().getInvoiceResponse();
+   }catch(error){
+     print(error);
+     mockData=[];
+   }
+  }
+
+  void set setNewInvoice(Invoice newInvoice){
+    this.newInvoice=newInvoice;
+  }
+
+  Invoice get getNewInvoice{
+    return newInvoice;
   }
 
   void set setData(String param) {
@@ -30,8 +44,6 @@ class InvoicesBloc extends Bloc<InvoicesEvent, InvoicesState> {
 
   Future<void> fetchInvoicesByDate(DateTime dateTime) async {
     filteredInvoices = [];
-    await getMockData();
-
 
     mockData.forEach((invoice) {
       try {
@@ -41,7 +53,6 @@ class InvoicesBloc extends Bloc<InvoicesEvent, InvoicesState> {
             dateTime.month == invoiceDate.month &&
             dateTime.year == invoiceDate.year) {
           filteredInvoices.add(invoice);
-          filteredInvoices.isEmpty;
         }
       } catch (error) {
         filteredInvoices = [];
@@ -71,6 +82,16 @@ class InvoicesBloc extends Bloc<InvoicesEvent, InvoicesState> {
         yield FilteredInvoicesByDate(filteredInvoices: filteredInvoices);
       } catch (error) {
         yield FailedToFilterInvoicesByDate(error: '$error');
+      }
+    }else if(invoicesEvent is AddNewInvoiceEvent){
+      yield AddingNewInvoice();
+      final newInvoice=AddNewInvoiceEvent(invoice: getNewInvoice).invoice;
+      mockData.add(newInvoice);
+
+      try{
+        yield AddedNewInvoice(invoice: newInvoice);
+      }catch(error){
+        yield FailedToAddNewInvoice(error: error);
       }
     }
   }

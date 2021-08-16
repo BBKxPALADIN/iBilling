@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../blocs/history/history_bloc.dart';
 import '../components/history_contracts.dart';
 import '../components/components.dart';
-import '../theme/color.dart';
 
 class History extends StatefulWidget {
   const History({Key key}) : super(key: key);
