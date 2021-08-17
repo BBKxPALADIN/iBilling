@@ -119,144 +119,139 @@ class _ProfileCardState extends State<ProfileCard> {
               ),
             ),
             const SizedBox(height: 10),
-            Container(
-              width: constrain.maxWidth,
-              height: constrain.maxHeight * 0.08,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
-                color: BillingColor.darkColor,
-              ),
-              padding: const EdgeInsets.only(left: 10),
-              // ignore: deprecated_member_use
-              child: GestureDetector(
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                      title: Text(
-                        'choose_language'.tr(),
-                        style: BillingThemes.textTheme.headline5,
-                        textAlign: TextAlign.center,
-                      ),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          ListTile(
-                            onTap: () {
-                              context.setLocale(const Locale('uz'));
-                              language = 'uz';
-                            },
-                            leading: SvgPicture.asset('assets/icons/uz.svg'),
-                            title: Text(
-                              'O\'zbek (Lotin)',
-                              style: BillingThemes.textTheme.headline6,
-                            ),
-                            trailing: SizedBox(
-                              width: 30,
-                              child: Radio(
-                                value: 'uz',
-                                groupValue: language,
-                                onChanged: (value) {},
-                              ),
+            GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: Text(
+                      'choose_language'.tr(),
+                      style: BillingThemes.textTheme.headline5,
+                      textAlign: TextAlign.center,
+                    ),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        ListTile(
+                          onTap: () {
+                            context.setLocale(const Locale('uz'));
+                            language = 'uz';
+                          },
+                          leading: SvgPicture.asset('assets/icons/uz.svg'),
+                          title: Text(
+                            'O\'zbek (Lotin)',
+                            style: BillingThemes.textTheme.headline6,
+                          ),
+                          trailing: SizedBox(
+                            width: 30,
+                            child: Radio(
+                              value: 'uz',
+                              groupValue: language,
+                              onChanged: (value) {},
                             ),
                           ),
-                          ListTile(
-                            onTap: () {
-                              context.setLocale(const Locale('ru'));
-                              language = 'ru';
-                            },
-                            leading: SvgPicture.asset('assets/icons/ru.svg'),
-                            title: Text(
-                              'Русский',
-                              style: BillingThemes.textTheme.headline6,
-                            ),
-                            trailing: SizedBox(
-                              width: 30,
-                              child: Radio(
-                                value: 'ru',
-                                groupValue: language,
-                                onChanged: (value) {},
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            onTap: () {
-                              context.setLocale(const Locale('en'));
-                              language = 'en';
-                            },
-                            leading: SvgPicture.asset('assets/icons/en.svg'),
-                            title: Text(
-                              'English (USA)',
-                              style: BillingThemes.textTheme.headline6,
-                            ),
-                            trailing: SizedBox(
-                              width: 30,
-                              child: Radio(
-                                value: 'en',
-                                groupValue: language,
-                                onChanged: (value) {},
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
-                      actions: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            MaterialButton(
-                              onPressed: () {
-                                language = '';
-                                context.setLocale(initialLang);
-                                setState(() {});
-                                Navigator.of(context).pop();
-                              },
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                height:
-                                    MediaQuery.of(context).size.width * 0.08,
-                                padding: const EdgeInsets.all(9),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(7),
-                                  color: BillingColor.darkGreenColor,
-                                ),
-                                child: Text(
-                                  'cancel'.tr(),
-                                  style: BillingThemes.textTheme.headline6
-                                      .copyWith(color: const Color(0xff11dbee)),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                            MaterialButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                height:
-                                    MediaQuery.of(context).size.width * 0.08,
-                                padding: const EdgeInsets.all(9),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(7),
-                                  color: BillingColor.lightGreenColor,
-                                ),
-                                child: Text(
-                                  'done'.tr(),
-                                  style: BillingThemes.textTheme.headline6
-                                      .copyWith(color: Colors.white),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ],
                         ),
+                        ListTile(
+                          onTap: () {
+                            context.setLocale(const Locale('ru'));
+                            language = 'ru';
+                          },
+                          leading: SvgPicture.asset('assets/icons/ru.svg'),
+                          title: Text(
+                            'Русский',
+                            style: BillingThemes.textTheme.headline6,
+                          ),
+                          trailing: SizedBox(
+                            width: 30,
+                            child: Radio(
+                              value: 'ru',
+                              groupValue: language,
+                              onChanged: (value) {},
+                            ),
+                          ),
+                        ),
+                        ListTile(
+                          onTap: () {
+                            context.setLocale(const Locale('en'));
+                            language = 'en';
+                          },
+                          leading: SvgPicture.asset('assets/icons/en.svg'),
+                          title: Text(
+                            'English (USA)',
+                            style: BillingThemes.textTheme.headline6,
+                          ),
+                          trailing: SizedBox(
+                            width: 30,
+                            child: Radio(
+                              value: 'en',
+                              groupValue: language,
+                              onChanged: (value) {},
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
                       ],
                     ),
-                  );
-                },
+                    actions: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          MaterialButton(
+                            onPressed: () {
+                              language = '';
+                              context.setLocale(initialLang);
+                              setState(() {});
+                              Navigator.of(context).pop();
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.25,
+                              padding: const EdgeInsets.all(9),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(7),
+                                color: BillingColor.darkGreenColor,
+                              ),
+                              child: Text(
+                                'cancel'.tr(),
+                                style: BillingThemes.textTheme.headline6
+                                    .copyWith(color: const Color(0xff11dbee)),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                          MaterialButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.25,
+                              padding: const EdgeInsets.all(9),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(7),
+                                color: BillingColor.lightGreenColor,
+                              ),
+                              child: Text(
+                                'done'.tr(),
+                                style: BillingThemes.textTheme.headline6
+                                    .copyWith(color: Colors.white),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.only(left: 13),
+                width: constrain.maxWidth,
+                height: constrain.maxHeight * 0.08,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: BillingColor.darkColor,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
