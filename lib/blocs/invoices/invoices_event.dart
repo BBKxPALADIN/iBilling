@@ -1,8 +1,6 @@
 part of 'invoices_bloc.dart';
 
 
-@immutable
-abstract class InvoicesEvent {}
 
 class LoadInvoices extends InvoicesEvent{}
 
@@ -16,3 +14,7 @@ class AddNewInvoiceEvent extends InvoicesEvent{
 
   AddNewInvoiceEvent({this.invoice});
 }
+
+
+@immutable
+abstract class InvoicesEvent {}

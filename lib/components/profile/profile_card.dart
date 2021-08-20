@@ -4,12 +4,16 @@ import '../../theme/color.dart';
 import '../../theme/themes.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+enum Language { uzb, rus, eng }
+
 class ProfileCard extends StatefulWidget {
   const ProfileCard({Key key}) : super(key: key);
 
   @override
   _ProfileCardState createState() => _ProfileCardState();
 }
+
+Language _language;
 
 class _ProfileCardState extends State<ProfileCard> {
   var lang = {
@@ -20,8 +24,8 @@ class _ProfileCardState extends State<ProfileCard> {
 
   @override
   Widget build(BuildContext context) {
-    var language = '';
-    final  initialLang = context.locale;
+    final initialLang = context.locale;
+
     return LayoutBuilder(
       builder: (ctx, constrain) => Padding(
         padding: const EdgeInsets.only(left: 12, top: 16, right: 12),
@@ -129,69 +133,56 @@ class _ProfileCardState extends State<ProfileCard> {
                       style: BillingThemes.textTheme.headline5,
                       textAlign: TextAlign.center,
                     ),
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        ListTile(
-                          onTap: () {
-                            context.setLocale(const Locale('uz'));
-                            language = 'uz';
-                          },
-                          leading: SvgPicture.asset('assets/icons/uz.svg'),
-                          title: Text(
-                            'O\'zbek (Lotin)',
-                            style: BillingThemes.textTheme.headline6,
-                          ),
-                          trailing: SizedBox(
-                            width: 30,
-                            child: Radio(
-                              value: 'uz',
-                              groupValue: language,
-                              onChanged: (value) {},
+                    content: StatefulBuilder(
+                      builder:(context,StateSetter setState)=> Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          RadioListTile(
+                            value: Language.uzb,
+                            groupValue: _language,
+                            toggleable: true,
+                            onChanged: (value) {
+                              setState(()=>_language=value);
+                            },
+                            title: Text(
+                              'O\'zbek (Lotin)',
+                              style: BillingThemes.textTheme.headline6,
                             ),
+                            secondary: SvgPicture.asset('assets/icons/uz.svg'),
+                            controlAffinity: ListTileControlAffinity.trailing,
                           ),
-                        ),
-                        ListTile(
-                          onTap: () {
-                            context.setLocale(const Locale('ru'));
-                            language = 'ru';
-                          },
-                          leading: SvgPicture.asset('assets/icons/ru.svg'),
-                          title: Text(
-                            'Русский',
-                            style: BillingThemes.textTheme.headline6,
-                          ),
-                          trailing: SizedBox(
-                            width: 30,
-                            child: Radio(
-                              value: 'ru',
-                              groupValue: language,
-                              onChanged: (value) {},
+                          RadioListTile(
+                            value: Language.rus,
+                            groupValue: _language,
+                            toggleable: true,
+                            onChanged: (value) {
+                              setState(()=>_language=value);
+                            },
+                            title: Text(
+                              'Русский',
+                              style: BillingThemes.textTheme.headline6,
                             ),
+                            secondary: SvgPicture.asset('assets/icons/ru.svg'),
+                            controlAffinity: ListTileControlAffinity.trailing,
                           ),
-                        ),
-                        ListTile(
-                          onTap: () {
-                            context.setLocale(const Locale('en'));
-                            language = 'en';
-                          },
-                          leading: SvgPicture.asset('assets/icons/en.svg'),
-                          title: Text(
-                            'English (USA)',
-                            style: BillingThemes.textTheme.headline6,
-                          ),
-                          trailing: SizedBox(
-                            width: 30,
-                            child: Radio(
-                              value: 'en',
-                              groupValue: language,
-                              onChanged: (value) {},
+                          RadioListTile(
+                            value: Language.eng,
+                            groupValue: _language,
+                            toggleable: true,
+                            onChanged: (value) {
+                              setState(()=>_language=value);
+                            },
+                            title: Text(
+                              'English (USA)',
+                              style: BillingThemes.textTheme.headline6,
                             ),
+                            secondary: SvgPicture.asset('assets/icons/en.svg'),
+                            controlAffinity: ListTileControlAffinity.trailing,
                           ),
-                        ),
-                        const SizedBox(height: 10),
-                      ],
+                          const SizedBox(height: 10),
+                        ],
+                      ),
                     ),
                     actions: [
                       Row(
@@ -199,7 +190,6 @@ class _ProfileCardState extends State<ProfileCard> {
                         children: [
                           MaterialButton(
                             onPressed: () {
-                              language = '';
                               context.setLocale(initialLang);
                               setState(() {});
                               Navigator.of(context).pop();
@@ -221,6 +211,11 @@ class _ProfileCardState extends State<ProfileCard> {
                           ),
                           MaterialButton(
                             onPressed: () {
+                              context.setLocale(Locale(_language == Language.rus
+                                  ? 'ru'
+                                  : _language == Language.uzb
+                                      ? 'uz'
+                                      : 'en'));
                               Navigator.of(context).pop();
                             },
                             child: Container(

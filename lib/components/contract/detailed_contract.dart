@@ -21,16 +21,23 @@ class DetailedContractsListView extends StatefulWidget {
 }
 
 class _DetailedContractsListViewState extends State<DetailedContractsListView> {
+  TextEditingController noteController = TextEditingController();
+  bool isDelete = false;
 
-  String statusInDifLang(){
-    final status=widget.contract.contractStatus;
-    if(status=='Paid')
+  String statusInDifLang() {
+    final status = widget.contract.contractStatus;
+    if (status == 'Paid')
       return 'paid'.tr();
-    else if(status=='In process')
+    else if (status == 'In process')
       return 'in_process'.tr();
-    else if(status=='Rejected by Payme')
-      return 'rejected_by_payme'.tr();
+    else if (status == 'Rejected by Payme') return 'rejected_by_payme'.tr();
     return 'rejected_by_IQ'.tr();
+  }
+
+  @override
+  void dispose() {
+    noteController.dispose();
+    super.dispose();
   }
 
   @override
@@ -41,7 +48,7 @@ class _DetailedContractsListViewState extends State<DetailedContractsListView> {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 17),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 17),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7),
                 color: BillingColor.darkColor,
@@ -158,13 +165,116 @@ class _DetailedContractsListViewState extends State<DetailedContractsListView> {
                 color: BillingColor.darkRedColor.withOpacity(0.23),
               ),
               child: MaterialButton(
-                onPressed: () {
-                  BlocProvider.of<ContractsBloc>(context, listen: false)
-                      .setContractToDelete = widget.contract;
-                  BlocProvider.of<ContractsBloc>(context, listen: false)
-                      .deleteContractRequest();
-                  BlocProvider.of<ContractsBloc>(context, listen: false)
-                      .add(LoadContracts());
+                onPressed: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (ctx) {
+                      return AlertDialog(
+                        backgroundColor: BillingColor.darkColor,
+                        title: Text(
+                          'comment'.tr(),
+                          textAlign: TextAlign.center,
+                          style: BillingThemes.textTheme.headline2
+                              .copyWith(color: Colors.white),
+                        ),
+                        content: TextField(
+                          controller: noteController,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            filled: true,
+                            hintText: 'Type a comment',
+                            hintStyle:
+                                BillingThemes.textTheme.headline2.copyWith(
+                              color: const Color(0xffC0C0C0),
+                            ),
+                          ),
+                          style: BillingThemes.textTheme.headline2,
+                          onChanged: (comment) {
+                            if (comment == '') {
+                              setState(() {
+                                isDelete = false;
+                              });
+                            } else
+                              setState(
+                                () {
+                                  isDelete = true;
+                                },
+                              );
+                          },
+                        ),
+                        actions: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.055),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ConstrainedBox(
+                                  constraints: BoxConstraints.tightFor(
+                                      width:
+                                          MediaQuery.of(ctx).size.width * 0.3),
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: BillingColor.darkRedColor
+                                          .withOpacity(0.23),
+                                    ),
+                                    onPressed: () {
+                                      noteController.clear();
+                                      Navigator.of(ctx).pop();
+                                    },
+                                    child: Text(
+                                      'cancel'.tr(),
+                                      style: BillingThemes.textTheme.headline2
+                                          .copyWith(
+                                              color:
+                                                  BillingColor.lightRedColor),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: MediaQuery.of(ctx).size.width * 0.05,
+                                ),
+                                ConstrainedBox(
+                                  constraints: BoxConstraints.tightFor(
+                                      width:
+                                          MediaQuery.of(ctx).size.width * 0.3),
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: const Color(0xFFFF426D),
+                                    ),
+                                    onPressed: () {
+                                      if (noteController.text == '') return;
+                                      BlocProvider.of<ContractsBloc>(context,
+                                                  listen: false)
+                                              .setContractToDelete =
+                                          widget.contract;
+                                      BlocProvider.of<ContractsBloc>(context,
+                                          listen: false)
+                                          .deleteContractRequest();
+                                      BlocProvider.of<ContractsBloc>(context)
+                                          .add(LoadContracts());
+                                      noteController.clear();
+                                      Navigator.of(ctx).pop();
+                                    },
+                                    child: Text(
+                                      'Done',
+                                      style: BillingThemes.textTheme.headline2
+                                          .copyWith(
+                                              color: BillingColor.whiteColor),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
                 child: Text(
                   'delete'.tr(),

@@ -9,6 +9,8 @@ import '../../components/components.dart';
 import '../../theme/color.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../home.dart';
+
 class NewInvoice extends StatefulWidget {
   static const routeName = '/newInvoice';
 
@@ -49,6 +51,9 @@ class _NewInvoiceState extends State<NewInvoice> {
           AddNewInvoiceEvent(
               invoice: BlocProvider.of<InvoicesBloc>(context, listen: false)
                   .getNewInvoice));
+      BlocProvider.of<InvoicesBloc>(context).add(LoadInvoices());
+      Navigator.of(context)
+          .pushReplacementNamed(Home.routeName);
     }
   }
 

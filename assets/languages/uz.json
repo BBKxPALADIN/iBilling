@@ -39,5 +39,6 @@
   "invoice_status": "Schot-fakt. Statusi",
   "language": "O'zbek (Lotin)",
   "created_at": "Yaratilgan sana",
-  "delete": "Shartnomani o'chirish"
+  "delete": "Shartnomani o'chirish",
+  "comment": "Komment qoldiring, nimaga shartnomani bekor qilmoqchisiz?"
 }

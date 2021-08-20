@@ -9,6 +9,8 @@ import '../../components/components.dart';
 import '../../theme/color.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+import '../home.dart';
+
 class NewContract extends StatefulWidget {
   static const routeName = '/newContract';
 
@@ -66,6 +68,9 @@ class _NewContractState extends State<NewContract> {
           AddNewContractEvent(
               contract: BlocProvider.of<ContractsBloc>(context, listen: false)
                   .getNewContract));
+      BlocProvider.of<ContractsBloc>(context).add(LoadContracts());
+      Navigator.of(context)
+          .pushReplacementNamed(Home.routeName);
     }
   }
 

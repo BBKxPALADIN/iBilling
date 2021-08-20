@@ -39,5 +39,6 @@
   "invoice_status": "Status of the invoice",
   "language": "English (USA)",
   "created_at": "Created at",
-  "delete": "Delete contract"
+  "delete": "Delete contract",
+  "comment": "Leave a comment, why are you deleting this contract?"
 }

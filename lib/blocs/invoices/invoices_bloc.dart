@@ -16,6 +16,7 @@ class InvoicesBloc extends Bloc<InvoicesEvent, InvoicesState> {
   String _date;
   List<Invoice> filteredInvoices = [];
   Invoice newInvoice;
+  int isChanged=0;
 
   Future<void> getMockData() async {
    try{
@@ -65,7 +66,10 @@ class InvoicesBloc extends Bloc<InvoicesEvent, InvoicesState> {
       InvoicesEvent invoicesEvent,) async* {
     if (invoicesEvent is LoadInvoices) {
       yield LoadingInvoicesState();
-      await getMockData();
+      if(isChanged==0) {
+        isChanged=1;
+        await getMockData();
+      }
       try {
         yield LoadedInvoicesState(invoices: mockData);
       } catch (error) {

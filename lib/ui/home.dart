@@ -10,7 +10,6 @@ class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);
 
   @override
-  // ignore: no_logic_in_create_state
   _HomeState createState() => _HomeState();
 }
 
